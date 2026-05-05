@@ -10,7 +10,7 @@ import { z } from "zod";
 
 // YouTube Data API v3
 // Default quota: 10,000 units/day (resets midnight Pacific)
-// Quota costs: search.list = 100 units, videos.list = 1-5 units, channels.list = 1-5 units
+// Quota costs: search.list = 100 units, videos.list = 1 unit, channels.list = 1 unit
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
@@ -119,7 +119,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     },
     {
       name: "get_video_stats",
-      description: "Get view count, like count, comment count, and metadata for a YouTube video. Costs ~5 quota units.",
+      description: "Get view count, like count, comment count, and metadata for a YouTube video. Costs 1 quota unit.",
       inputSchema: {
         type: "object",
         properties: {
@@ -130,7 +130,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     },
     {
       name: "get_channel_stats",
-      description: "Get subscriber count, total views, video count, and metadata for a YouTube channel. Costs ~5 quota units.",
+      description: "Get subscriber count, total views, video count, and metadata for a YouTube channel. Costs 1 quota unit.",
       inputSchema: {
         type: "object",
         properties: {
@@ -141,7 +141,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     },
     {
       name: "get_trending_videos",
-      description: "Get currently trending videos in a region and optional category. Costs ~5 quota units.",
+      description: "Get trending videos in a region and category. Costs 1 quota unit. NOTE: as of Jul 2025, chart=mostPopular only returns Music/Movies/Gaming categories — use category_id to target these, or use search_videos for general trending.",
       inputSchema: {
         type: "object",
         properties: {
